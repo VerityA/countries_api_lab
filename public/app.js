@@ -1,5 +1,7 @@
 
 let allCountries =[];
+// let regions = [];
+// let subRegions = [];
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -24,21 +26,36 @@ const requestComplete = function () {
   const jsonString = this.responseText;
   allCountries = JSON.parse(jsonString);
   createDropDown(allCountries);
+  // regions = function (allCountries) {
+  //   allCountries.filter((country, index) => {
+  //     allCountries.indexOf["region"]
+  //   })
+  // }
+};
+
+const findRegions = function() {
+  const regions = allCountries.map((country) => {
+    country["region"];
+  });
+  const uniqueRegions = regions.filter((region,index) => regions.indexOf(region) == index);
+  return uniqueRegions;
 };
 
 const handleChange = function (event) {
   const countryDiv = document.querySelector('#info');
   countryDiv.innerHTML = '';
 
+
   const optionInfo = JSON.parse(this.value);
   getStats(countryDiv, optionInfo);
 
+  const borderDiv = document.querySelector('#border-info');
+  borderDiv.innerHTML = '';
 
   // console.log(optionInfo["borders"]);
-  const borderDiv = document.querySelector('#border-info');
+
   const neighbours = findNeighbours(optionInfo, allCountries);
   for (country of neighbours) {
-    // console.log(country);
     getStats(borderDiv, country)
   };
 };
